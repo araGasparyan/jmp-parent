@@ -43,6 +43,6 @@ public class ServiceImpl implements Service {
                 .map(BankCard::getUser)
                 .filter(Objects::nonNull)
                 .distinct()
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList()); // can be changed to Streams toList
     }
 }
