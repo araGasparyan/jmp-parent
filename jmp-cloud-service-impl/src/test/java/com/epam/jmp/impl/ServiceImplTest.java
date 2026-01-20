@@ -87,4 +87,22 @@ class ServiceImplTest {
         assertEquals(1, users.size());
         assertEquals(firstUser, users.get(0));
     }
+
+    @Test
+    void getAverageUsersAge_twoUsers_shouldReturnAverage() {
+        var now = LocalDate.now();
+
+        var user1 = new User("John", "Doe", now.minusYears(30));
+        var user2 = new User("Jane", "Smith", now.minusYears(20));
+
+        var card1 = new CreditBankCard("CARD-AGE-1", user1, 1000.0);
+        var card2 = new CreditBankCard("CARD-AGE-2", user2, 1000.0);
+
+        service.subscribe(card1);
+        service.subscribe(card2);
+
+        var averageAge = service.getAverageUsersAge();
+
+        assertEquals(25.0, averageAge);
+    }
 }

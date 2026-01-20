@@ -26,6 +26,9 @@ public class App {
         var users = service.getAllUsers();
         System.out.println("Users count: " + users.size());
         users.forEach(u -> System.out.println(u.getName() + " " + u.getSurname()));
+
+        double averageAge = service.getAverageUsersAge();
+        System.out.println("Average users age: " + averageAge);
     }
 
     private static <T> T load(Class<T> api) {
