@@ -4,6 +4,7 @@ import com.epam.jmp.dto.BankCard;
 import com.epam.jmp.dto.Subscription;
 import com.epam.jmp.dto.User;
 import com.epam.jmp.service.Service;
+import com.epam.jmp.service.exception.SubscriptionNotFoundException;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -33,8 +34,11 @@ public class ServiceImpl implements Service {
 
     @Override
     public Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber) {
-        return Optional.ofNullable(cardNumber)
-                .map(subscriptions::get);
+        var subscription = Optional.ofNullable(cardNumber)
+                .map(subscriptions::get)
+                .orElseThrow(() -> new SubscriptionNotFoundException(cardNumber));
+
+        return Optional.of(subscription);
     }
 
     @Override

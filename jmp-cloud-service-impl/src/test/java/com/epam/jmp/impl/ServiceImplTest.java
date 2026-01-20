@@ -3,6 +3,7 @@ package com.epam.jmp.impl;
 import com.epam.jmp.dto.CreditBankCard;
 import com.epam.jmp.dto.User;
 import com.epam.jmp.service.Service;
+import com.epam.jmp.service.exception.SubscriptionNotFoundException;
 import com.epam.jmp.service.impl.ServiceImpl;
 import org.junit.jupiter.api.Test;
 
@@ -38,13 +39,19 @@ class ServiceImplTest {
     }
 
     @Test
-    void getSubscriptionByBankCardNumber_nullCardNumber_shouldReturnEmpty() {
-        assertTrue(service.getSubscriptionByBankCardNumber(null).isEmpty());
+    void getSubscriptionByBankCardNumber_nullCardNumber_shouldThrowException() {
+        assertThrows(
+                SubscriptionNotFoundException.class,
+                () -> service.getSubscriptionByBankCardNumber(null)
+        );
     }
 
     @Test
-    void getSubscriptionByBankCardNumber_unknownCardNumber_shouldReturnEmpty() {
-        assertTrue(service.getSubscriptionByBankCardNumber("UNKNOWN").isEmpty());
+    void getSubscriptionByBankCardNumber_unknownCardNumber_shouldThrowException() {
+        assertThrows(
+                SubscriptionNotFoundException.class,
+                () -> service.getSubscriptionByBankCardNumber("UNKNOWN")
+        );
     }
 
     @Test
