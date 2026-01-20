@@ -1,11 +1,12 @@
 package com.epam.jmp.impl;
 
+import com.epam.jmp.bank.impl.BankImpl;
 import com.epam.jmp.dto.BankCard;
 import com.epam.jmp.dto.BankCardType;
 import com.epam.jmp.dto.CreditBankCard;
 import com.epam.jmp.dto.DebitBankCard;
 import com.epam.jmp.dto.User;
-import com.epam.jmp.service.Bank;
+import com.epam.jmp.bank.Bank;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

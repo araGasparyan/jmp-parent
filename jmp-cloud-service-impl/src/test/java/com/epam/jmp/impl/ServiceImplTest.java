@@ -3,6 +3,7 @@ package com.epam.jmp.impl;
 import com.epam.jmp.dto.CreditBankCard;
 import com.epam.jmp.dto.User;
 import com.epam.jmp.service.Service;
+import com.epam.jmp.service.impl.ServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
