@@ -121,4 +121,33 @@ class ServiceImplTest {
 
         assertTrue(result);
     }
+
+    @Test
+    void getAllSubscriptionsByCondition_shouldReturnMatchingSubscriptions() {
+        var user1 = new User("John", "Doe", LocalDate.of(1990, 1, 1));
+        var user2 = new User("Jane", "Smith", LocalDate.of(1995, 5, 10));
+
+        var card1 = new CreditBankCard("CARD-SUB-1", user1, 1000.0);
+        var card2 = new CreditBankCard("CARD-SUB-2", user2, 1000.0);
+
+        service.subscribe(card1);
+        service.subscribe(card2);
+
+        var result = service.getAllSubscriptionsByCondition(s -> s.getBankcard().startsWith("CARD-SUB"));
+
+        assertEquals(2, result.size());
+        assertTrue(result.stream().allMatch(s -> s.getBankcard().startsWith("CARD-SUB")));
+    }
+
+    @Test
+    void getAllSubscriptionsByCondition_shouldReturnEmptyWhenNoMatch() {
+        var user = new User("John", "Doe", LocalDate.of(1990, 1, 1));
+        var card = new CreditBankCard("CARD-SUB-1", user, 1000.0);
+
+        service.subscribe(card);
+
+        var result = service.getAllSubscriptionsByCondition(s -> s.getBankcard().equals("NOPE"));
+
+        assertTrue(result.isEmpty());
+    }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ServiceImpl implements Service {
@@ -48,5 +49,14 @@ public class ServiceImpl implements Service {
                 .filter(Objects::nonNull)
                 .distinct()
                 .collect(Collectors.toUnmodifiableList()); // can be changed to Streams toList
+    }
+
+    @Override
+    public List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> condition) {
+        var predicate = Optional.ofNullable(condition).orElse(s -> true);
+
+        return subscriptions.values().stream()
+                .filter(predicate)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -31,6 +31,16 @@ public class App {
         System.out.println("Average users age: " + averageAge);
 
         System.out.println("Is payable user: " + Service.isPayableUser(user));
+
+        var todaysSubscriptions = service.getAllSubscriptionsByCondition(
+                s -> LocalDate.now().equals(s.getStartDate())
+        );
+
+        System.out.println("Today's subscriptions: " + todaysSubscriptions.size());
+        todaysSubscriptions.forEach(s ->
+                System.out.println("Subscription: " + s.getBankcard() + " since " + s.getStartDate())
+        );
+
     }
 
     private static <T> T load(Class<T> api) {
