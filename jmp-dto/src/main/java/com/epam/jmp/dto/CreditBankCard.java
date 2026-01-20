@@ -2,7 +2,7 @@ package com.epam.jmp.dto;
 
 import java.util.Objects;
 
-public class CreditBankCard extends BankCard {
+public final class CreditBankCard extends BankCard {
     private double creditLimit;
 
     public CreditBankCard(String number, User user, double creditLimit) {

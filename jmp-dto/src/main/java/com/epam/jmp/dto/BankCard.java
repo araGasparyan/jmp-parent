@@ -2,7 +2,7 @@ package com.epam.jmp.dto;
 
 import java.util.Objects;
 
-public class BankCard {
+public sealed class BankCard permits CreditBankCard, DebitBankCard {
     private String number;
     private User user;
 

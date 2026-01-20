@@ -2,7 +2,7 @@ package com.epam.jmp.dto;
 
 import java.util.Objects;
 
-public class DebitBankCard extends BankCard {
+public final class DebitBankCard extends BankCard {
     private double balance;
 
     public DebitBankCard(String number, User user, double balance) {
