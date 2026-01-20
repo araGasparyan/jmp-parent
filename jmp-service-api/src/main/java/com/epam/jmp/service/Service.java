@@ -30,4 +30,12 @@ public interface Service {
                 .average()
                 .orElse(0.0);
     }
+
+    static boolean isPayableUser(User user) {
+        return Optional.ofNullable(user)
+                .map(User::getBirthday)
+                .map(birthday -> ChronoUnit.YEARS.between(birthday, LocalDate.now()))
+                .map(age -> age >= 18)
+                .orElse(false);
+    }
 }

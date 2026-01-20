@@ -105,4 +105,13 @@ class ServiceImplTest {
 
         assertEquals(25.0, averageAge);
     }
+
+    @Test
+    void isPayableUser_shouldReturnTrueForAdultUser() {
+        var adultUser = new User("John", "Doe", LocalDate.now().minusYears(18));
+
+        var result = Service.isPayableUser(adultUser);
+
+        assertTrue(result);
+    }
 }

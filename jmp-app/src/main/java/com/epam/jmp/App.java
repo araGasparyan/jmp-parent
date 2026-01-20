@@ -29,6 +29,8 @@ public class App {
 
         double averageAge = service.getAverageUsersAge();
         System.out.println("Average users age: " + averageAge);
+
+        System.out.println("Is payable user: " + Service.isPayableUser(user));
     }
 
     private static <T> T load(Class<T> api) {
